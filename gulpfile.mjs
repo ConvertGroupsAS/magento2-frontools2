@@ -16,6 +16,8 @@ import { svg as svgTask } from './tasks/svg.mjs'
 import { watch as watchTask } from './tasks/watch.mjs'
 import magepackBundleTask from './tasks/magepack-bundle.mjs'
 import magepackGenerateTask from './tasks/magepack-generate.mjs'
+import themeNpmInstallTask from './tasks/theme-deps.mjs'
+import { copyJsTask } from './tasks/copyjs.mjs'
 
 export const babel = gulp.series(inheritanceTask, babelTask)
 export const clean = cleanTask
@@ -25,11 +27,13 @@ export const emailfix = emailFixTask
 export const eslint = eslintTask
 export const inheritance = inheritanceTask
 export const sasslint = sassLintTask
-export const setup = setupTask
-export const styles = gulp.series(inheritanceTask, stylesTask)
+export const setup = gulp.series(setupTask, themeNpmInstallTask)
+export const styles = gulp.series(inheritanceTask, babelTask, stylesTask)
 export const svg = gulp.series(inheritanceTask, svgTask)
 export const watch = watchTask
 export const magepackBundle = magepackBundleTask
 export const magepackGenerate = magepackGenerateTask
-
+export const themeNpmInstall = themeNpmInstallTask
+export const copyjs = gulp.series(copyJsTask)
+export const release = gulp.series(cleanTask, stylesTask, copyJsTask)
 export { default as default } from './tasks/default.mjs'
