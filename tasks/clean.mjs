@@ -1,13 +1,11 @@
-import gulp from 'gulp'
-import rimraf from 'gulp-rimraf'
+import {deleteAsync} from 'del'
 
 import { projectPath } from '../helpers/config.mjs'
 
 export const clean = () => {
   // Remove all files under pub/static, except .htaccess
-  return gulp.src([
+  return deleteAsync([
     projectPath + 'pub/static/*',
     '!' + projectPath + 'pub/static/.htaccess'
-  ], { read: false })
-    .pipe(rimraf({ force: true }))
+  ], { force: true })
 }
