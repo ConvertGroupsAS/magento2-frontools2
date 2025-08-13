@@ -17,7 +17,7 @@ import { watch as watchTask } from './tasks/watch.mjs'
 import magepackBundleTask from './tasks/magepack-bundle.mjs'
 import magepackGenerateTask from './tasks/magepack-generate.mjs'
 import themeNpmInstallTask from './tasks/theme-deps.mjs'
-import emptyBowerTask from './tasks/bower.mjs'
+import { bower as emptyBowerTask } from './tasks/bower.mjs'
 import { copyJsTask } from './tasks/copyjs.mjs'
 
 export const babel = gulp.series(inheritanceTask, babelTask)
