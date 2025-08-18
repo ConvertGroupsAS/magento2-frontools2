@@ -37,5 +37,5 @@ export const magepackGenerate = magepackGenerateTask
 export const themeNpmInstall = themeNpmInstallTask
 export const bower = emptyBowerTask
 export const copyjs = gulp.series(copyJsTask)
-export const release = gulp.series(cleanTask, stylesTask, copyJsTask)
+export const release = gulp.series(cleanTask, inheritanceTask, stylesTask, copyJsTask)
 export { default as default } from './tasks/default.mjs'
