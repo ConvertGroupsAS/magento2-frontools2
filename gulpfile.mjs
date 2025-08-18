@@ -35,7 +35,7 @@ export const watch = watchTask
 export const magepackBundle = magepackBundleTask
 export const magepackGenerate = magepackGenerateTask
 export const themeNpmInstall = themeNpmInstallTask
-export const bower = emptyBowerTask
+export const bower = themeNpmInstallTask
 export const copyjs = gulp.series(copyJsTask)
-export const release = gulp.series(cleanTask, inheritanceTask, stylesTask, copyJsTask)
+export const release = gulp.series(cleanTask, inheritanceTask, babelTask, stylesTask, copyJsTask)
 export { default as default } from './tasks/default.mjs'
