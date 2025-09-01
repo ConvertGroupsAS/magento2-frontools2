@@ -22,7 +22,7 @@ export default function(name, file) {
   const srcBase = path.join(tempPath, theme.dest)
   const stylesDir = theme.stylesDir ? theme.stylesDir : 'styles'
   const dest = []
-  const disableMaps = env.disableMaps || false
+  const disableMaps = env.disableMaps || theme.disableMaps || false
   const production = env.prod || false
   const includePaths = theme.includePaths ? theme.includePaths : []
   const postcssConfig = []
@@ -66,7 +66,7 @@ export default function(name, file) {
       )
     )
     .pipe(gulpIf(!disableMaps, sourcemaps.init()))
-    .pipe(gulpSass(dartSass)({ includePaths: includePaths })
+    .pipe(gulpSass(dartSass)({ includePaths: includePaths, quietDeps: true, quiet: true })
       .on('error', sassError(env.ci || false)))
     .pipe(gulpIf(production, postcss([cssnano()])))
     .pipe(gulpIf(postcssConfig.length, postcss(postcssConfig || [])))
